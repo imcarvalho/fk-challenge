@@ -17,9 +17,13 @@ const Button = styled.button`
 `;
 
 function Recorder() {
-    const { isRecording, setIsRecording, notes } = useContext(NotesContext);
+    const { isRecording, setIsRecording, notes, setStartingTime } = useContext(NotesContext);
 
-    const handleStartRecording = () => setIsRecording(true);
+    const handleStartRecording = () => {
+        setStartingTime(Date.now());
+        setIsRecording(true);
+    };
+
     const handleStopRecording = () => setIsRecording(false);
 
     return (
@@ -34,4 +38,4 @@ function Recorder() {
     );
 }
 
-export default Recorder;
+export default React.memo(Recorder);

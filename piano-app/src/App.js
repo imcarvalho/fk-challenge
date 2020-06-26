@@ -7,6 +7,7 @@ import { NotesContext } from "./shared/Context";
 function App() {
     const [notes, setNotes] = useState([]);
     const [isRecording, setIsRecording] = useState(false);
+    const [startingTime, setStartingTime] = useState(0);
 
     return (
         <div className="App">
@@ -18,6 +19,8 @@ function App() {
                     isRecording,
                     setIsRecording,
                     setNotes,
+                    startingTime,
+                    setStartingTime,
                 }}
             >
                 <Piano />
