@@ -1,8 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Soundfont from "soundfont-player";
+import { NotesContext } from "./shared/Context";
 
 class SoundfontProvider extends React.Component {
+    static contextType = NotesContext;
+
     static propTypes = {
         instrumentName: PropTypes.string.isRequired,
         hostname: PropTypes.string.isRequired,
@@ -57,6 +60,11 @@ class SoundfontProvider extends React.Component {
     playNote = midiNumber => {
         this.props.audioContext.resume().then(() => {
             const audioNode = this.state.instrument.play(midiNumber);
+
+            if (this.context.isRecording) {
+                this.context.setNotes([...this.context.notes, { midiNumber, timestamp: "1" }]);
+            }
+
             this.setState({
                 activeAudioNodes: Object.assign({}, this.state.activeAudioNodes, {
                     [midiNumber]: audioNode,
@@ -105,4 +113,4 @@ class SoundfontProvider extends React.Component {
     }
 }
 
-export default SoundfontProvider;
+export default React.memo(SoundfontProvider);
