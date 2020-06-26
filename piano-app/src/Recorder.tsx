@@ -8,11 +8,11 @@ const RecorderContainer = styled.div`
 `;
 
 const Button = styled.button`
-    background-color: ${Colors.Orange};
+    background-color: ${Colors.Background};
     color: #ffffff;
     margin: 1em;
     padding: 0.25em 2em;
-    border: 2px solid ${Colors.Orange};
+    border: 2px solid ${Colors.Background};
     border-radius: 3px;
 `;
 
