@@ -64,7 +64,7 @@ class SoundfontProvider extends React.Component {
             if (this.context.isRecording) {
                 this.context.setNotes([
                     ...this.context.notes,
-                    { midiNumber, timestamp: Date.now() },
+                    { midiNumber, timestamp: Date.now() - this.context.startingTime },
                 ]);
             }
 

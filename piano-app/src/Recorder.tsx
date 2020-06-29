@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import Stopwatch from "./Stopwatch";
 import { Colors } from "./shared/types";
 import { NotesContext } from "./shared/Context";
 
-const RecorderContainer = styled.div`
+const RecordStatusContainer = styled.div`
     padding: 20px;
+    display: flex;
+    flex-direction: row;
 `;
 
 const Button = styled.button`
@@ -34,14 +37,17 @@ function Recorder() {
     const handleStopRecording = () => setIsRecording(false);
 
     return (
-        <RecorderContainer>
-            {isRecording === false ? (
-                <Button onClick={handleStartRecording}>Record</Button>
-            ) : (
-                <Button onClick={handleStopRecording}>Stop recording</Button>
-            )}
+        <>
+            <RecordStatusContainer>
+                {isRecording === false ? (
+                    <Button onClick={handleStartRecording}>Record</Button>
+                ) : (
+                    <Button onClick={handleStopRecording}>Stop recording</Button>
+                )}
+                <Stopwatch />
+            </RecordStatusContainer>
             <pre>{JSON.stringify(notes)}</pre>
-        </RecorderContainer>
+        </>
     );
 }
 
