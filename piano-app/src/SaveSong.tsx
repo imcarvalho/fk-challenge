@@ -1,14 +1,26 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "./shared/Button";
+import { Status } from "./shared/types";
 
 const SaveContainer = styled.div`
     display: flex;
     flex-direction: row;
 `;
 
-const Recorder = () => {
+const InputContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding-top: 3px;
+`;
+
+const Label = styled.label`
+    font-size: 0.8em;
+`;
+
+const SaveSong = () => {
     const [songTitle, setSongTitle] = useState("");
+    const [status, setStatus] = useState(Status.Idle);
 
     //@TODO: how to not trigger a play note when entering the song title
 
@@ -18,27 +30,31 @@ const Recorder = () => {
     const handleSave = (e: React.FormEvent) => {
         e.preventDefault();
 
+        setStatus(Status.Loading);
         // @TODO: do the save here
         console.log("save");
     };
 
     return (
-        <SaveContainer>
-            <form onSubmit={handleSave}>
-                <label htmlFor="songTitle">Song title</label>
-                <input
-                    type="text"
-                    value={songTitle}
-                    onChange={handleTitleUpdate}
-                    name="song title"
-                    id="songTitle"
-                />
-                <Button name="save" type="submit">
+        <form onSubmit={handleSave}>
+            <SaveContainer>
+                <InputContainer>
+                    <Label htmlFor="songTitle">Song title</Label>
+                    <input
+                        required
+                        type="text"
+                        value={songTitle}
+                        onChange={handleTitleUpdate}
+                        name="song title"
+                        id="songTitle"
+                    />
+                </InputContainer>
+                <Button name="save" type="submit" disabled={status === Status.Loading}>
                     Save
                 </Button>
-            </form>
-        </SaveContainer>
+            </SaveContainer>
+        </form>
     );
 };
 
-export default React.memo(Recorder);
+export default SaveSong;

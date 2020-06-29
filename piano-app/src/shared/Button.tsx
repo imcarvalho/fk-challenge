@@ -15,6 +15,7 @@ type Props = {
     onClick?: () => void;
     name: string;
     type?: "button" | "submit" | "reset" | undefined;
+    disabled?: boolean;
     children: React.ReactNode;
 };
 
