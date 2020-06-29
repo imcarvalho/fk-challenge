@@ -8,11 +8,12 @@ new MongoMemoryServer({ instance: { port: 27017 } });
 // this API is just an example, you can modify any parts if needed for the task
 const typeDefs = gql`
     type Note {
+        id: ID!
         midiNumber: Int
         timestamp: Int
     }
 
-    input NoteIn {
+    input NoteInput {
         midiNumber: Int
         timestamp: Int
     }
@@ -28,7 +29,7 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        addSong(title: String, keyStrokes: [NoteIn]): Song
+        addSong(title: String, keyStrokes: [NoteInput]): Song
     }
 `;
 
