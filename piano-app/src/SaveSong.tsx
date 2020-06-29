@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
+import gql from "graphql-tag";
+import { useMutation } from "@apollo/react-hooks";
+import { NotesContext } from "./shared/Context";
 import Button from "./shared/Button";
 import { Status } from "./shared/types";
 
@@ -19,6 +22,16 @@ const Label = styled.label`
 `;
 
 const SaveSong = () => {
+    const { notes } = useContext(NotesContext);
+    const [addSong, { data }] = useMutation(gql`
+        mutation {
+            addSong(title: "Some new song", keyStrokes: ["D", "E", "F"]) {
+                _id
+                title
+                keyStrokes
+            }
+        }
+    `);
     const [songTitle, setSongTitle] = useState("");
     const [status, setStatus] = useState(Status.Idle);
 
@@ -30,9 +43,11 @@ const SaveSong = () => {
     const handleSave = (e: React.FormEvent) => {
         e.preventDefault();
 
+        addSong({ variables: { title: songTitle, keystrokes: notes } });
+
         setStatus(Status.Loading);
         // @TODO: do the save here
-        console.log("save");
+        console.log("save", notes);
     };
 
     return (

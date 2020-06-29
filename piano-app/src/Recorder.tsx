@@ -20,10 +20,9 @@ const RecordStatusContainer = styled.div`
  */
 
 const Recorder = () => {
-    const { isRecording, setIsRecording, notes, setStartingTime } = useContext(NotesContext);
+    const { isRecording, setIsRecording, setStartingTime } = useContext(NotesContext);
 
-    //@TODO: this should be false, of course
-    const [showSave, setShowSave] = useState(true);
+    const [showSave, setShowSave] = useState(false);
 
     const handleStartRecording = () => {
         setStartingTime(Date.now());
