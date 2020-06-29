@@ -13,6 +13,8 @@ const SongList = () => {
         }
     `);
 
+    console.log("data", data);
+
     // @TODO: show loading spinner
     // @TODO: show error message
     // @TODO: show the song list, obviously

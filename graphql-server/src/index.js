@@ -12,6 +12,11 @@ const typeDefs = gql`
         timestamp: Int
     }
 
+    input NoteIn {
+        midiNumber: Int
+        timestamp: Int
+    }
+
     type Song {
         _id: ID!
         title: String
@@ -23,7 +28,7 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        addSong(title: String, keyStrokes: [Note]): Song
+        addSong(title: String, keyStrokes: [NoteIn]): Song
     }
 `;
 

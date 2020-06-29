@@ -24,8 +24,8 @@ const Label = styled.label`
 const SaveSong = () => {
     const { notes } = useContext(NotesContext);
     const [addSong, { data }] = useMutation(gql`
-        mutation {
-            addSong(title: "Some new song", keyStrokes: ["D", "E", "F"]) {
+        mutation AddSong($title: String!, $keyStrokes: [NoteIn]) {
+            addSong(title: $title, keyStrokes: $keyStrokes) {
                 _id
                 title
                 keyStrokes
@@ -43,9 +43,10 @@ const SaveSong = () => {
     const handleSave = (e: React.FormEvent) => {
         e.preventDefault();
 
-        addSong({ variables: { title: songTitle, keystrokes: notes } });
+        console.log(JSON.stringify(notes));
 
-        setStatus(Status.Loading);
+        addSong({ variables: { title: songTitle, keyStrokes: notes } });
+
         // @TODO: do the save here
         console.log("save", notes);
     };
