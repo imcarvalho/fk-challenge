@@ -9,7 +9,7 @@ const StopwatchContainer = styled.div`
 const padTime = (time: number) => (time < 10 ? `0${time}` : `${time}`);
 const formatTime = (minutes: number, seconds: number) => `${padTime(minutes)}:${padTime(seconds)}`;
 
-function Stopwatch() {
+const Stopwatch = () => {
     const { isRecording, startingTime } = useContext(NotesContext);
     const [currentTime, setCurrentTime] = useState(0);
 
@@ -36,6 +36,6 @@ function Stopwatch() {
             {formatTime(currentDate.getMinutes(), currentDate.getSeconds())}
         </StopwatchContainer>
     );
-}
+};
 
-export default React.memo(Stopwatch);
+export default Stopwatch;
