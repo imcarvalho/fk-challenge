@@ -3,11 +3,11 @@ import styled from "styled-components";
 import { Colors } from "./types";
 
 const ButtonStyle = styled.button`
-    background-color: ${Colors.Background};
+    background-color: ${props => (props.disabled ? Colors.Disabled : Colors.Background)};
+    border: 2px solid ${props => (props.disabled ? Colors.Disabled : Colors.Background)};
     color: #ffffff;
     margin: 1em;
     padding: 0.25em 2em;
-    border: 2px solid ${Colors.Background};
     border-radius: 3px;
 `;
 
