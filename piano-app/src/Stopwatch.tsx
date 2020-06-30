@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { NotesContext } from "./shared/Context";
+import { Spacings } from "./shared/types";
 
 const StopwatchContainer = styled.div`
-    padding: 20px;
+    padding: ${Spacings.L};
 `;
 
 const padTime = (time: number) => (time < 10 ? `0${time}` : `${time}`);

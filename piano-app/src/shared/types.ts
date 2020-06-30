@@ -8,3 +8,10 @@ export enum Colors {
     AlertBackground = "#FCE5E8",
     AlertForeground = "#CE0009",
 }
+
+export enum Spacings {
+    S = "5px",
+    M = "10px",
+    L = "20px",
+    XL = "25px",
+}

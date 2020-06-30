@@ -1,5 +1,12 @@
 import React from "react";
-import { Note } from "./shared/types";
+import styled from "styled-components";
+import { Note, Spacings } from "./shared/types";
+
+const SongContainer = styled.li`
+    list-style: none;
+    margin: 0;
+    padding-bottom: ${Spacings.M};
+`;
 
 type Props = {
     title: string;
@@ -7,7 +14,7 @@ type Props = {
 };
 
 const Song = (props: Props) => {
-    return <>{props.title}</>;
+    return <SongContainer>{props.title}</SongContainer>;
 };
 
 export default Song;

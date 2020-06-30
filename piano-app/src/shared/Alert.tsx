@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Colors } from "./types";
+import { Colors, Spacings } from "./types";
 
 const AlertContainer = styled.div`
-    padding: 5px;
+    padding: ${Spacings.S};
     background-color: ${Colors.AlertBackground};
     color: ${Colors.AlertForeground};
     border: 1px solid ${Colors.AlertForeground};

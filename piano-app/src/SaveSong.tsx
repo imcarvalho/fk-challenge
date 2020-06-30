@@ -50,8 +50,6 @@ const SaveSong = () => {
     `);
     const [songTitle, setSongTitle] = useState("");
 
-    //@TODO: how to not trigger a play note when entering the song title
-
     const handleTitleUpdate = (e: React.ChangeEvent<HTMLInputElement>) =>
         setSongTitle(e.target.value);
 

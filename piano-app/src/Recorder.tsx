@@ -4,21 +4,15 @@ import Button from "./shared/Button";
 import Stopwatch from "./Stopwatch";
 import SaveSong from "./SaveSong";
 import SongList from "./SongList";
-import Loading from "./shared/Loading";
 import { NotesContext } from "./shared/Context";
+import { Spacings } from "./shared/types";
 
 const RecordStatusContainer = styled.div`
-    padding: 20px;
+    padding-top: ${Spacings.L};
     display: flex;
     flex-direction: row;
     align-items: center;
 `;
-
-/**
- * @TODO:
- * Show a list of stored songs with title
- * Enable replaying stored songs with a small play button next to the title (with correct timing of replayed keys!)
- */
 
 const Recorder = () => {
     const { isRecording, setIsRecording, setStartingTime } = useContext(NotesContext);

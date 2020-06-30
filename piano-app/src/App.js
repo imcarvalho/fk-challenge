@@ -7,7 +7,6 @@ import Recorder from "./Recorder";
 import { NotesContext } from "./shared/Context";
 
 const client = new ApolloClient({
-    // @TODO: define this URL on a configs file
     uri: "//localhost:4000",
 });
 
