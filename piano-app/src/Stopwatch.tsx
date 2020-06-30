@@ -2,13 +2,11 @@ import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { NotesContext } from "./shared/Context";
 import { Spacings } from "./shared/types";
+import { formatTime } from "./shared/utils";
 
 const StopwatchContainer = styled.div`
     padding: ${Spacings.L};
 `;
-
-const padTime = (time: number) => (time < 10 ? `0${time}` : `${time}`);
-const formatTime = (minutes: number, seconds: number) => `${padTime(minutes)}:${padTime(seconds)}`;
 
 const Stopwatch = () => {
     const { isRecording, startingTime } = useContext(NotesContext);
@@ -30,13 +28,7 @@ const Stopwatch = () => {
 
     const stopTimer = () => setCurrentTime(0);
 
-    const currentDate = new Date(currentTime);
-
-    return (
-        <StopwatchContainer>
-            {formatTime(currentDate.getMinutes(), currentDate.getSeconds())}
-        </StopwatchContainer>
-    );
+    return <StopwatchContainer>{formatTime(currentTime)}</StopwatchContainer>;
 };
 
 export default Stopwatch;

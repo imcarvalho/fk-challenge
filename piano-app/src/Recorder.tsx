@@ -15,7 +15,7 @@ const RecordStatusContainer = styled.div`
 `;
 
 const Recorder = () => {
-    const { isRecording, setIsRecording, setStartingTime } = useContext(NotesContext);
+    const { isRecording, setIsRecording, setStartingTime, notes } = useContext(NotesContext);
 
     const [showSave, setShowSave] = useState(false);
 
@@ -26,7 +26,11 @@ const Recorder = () => {
 
     const handleStopRecording = () => {
         setIsRecording(false);
-        setShowSave(true);
+
+        // do not allow to record empty songs
+        if (notes.length > 0) {
+            setShowSave(true);
+        }
     };
 
     return (
