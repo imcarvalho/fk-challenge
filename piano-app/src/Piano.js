@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Piano as ReactPiano, KeyboardShortcuts, MidiNumbers } from "react-piano";
 import SoundfontProvider from "./SoundfontProvider";
 import "react-piano/dist/styles.css";
 import { PlayContext } from "./shared/Context";
+import Recorder from "./Recorder";
+import { NotesContext } from "./shared/Context";
+import { ApolloProvider } from "@apollo/react-hooks";
+import ApolloClient from "apollo-boost";
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const soundfontHostname = "https://d1pzp51pvbm36p.cloudfront.net";
@@ -17,27 +21,51 @@ const keyboardShortcuts = KeyboardShortcuts.create({
     keyboardConfig: KeyboardShortcuts.HOME_ROW,
 });
 
+const client = new ApolloClient({
+    uri: "//localhost:4000",
+});
+
 function Piano() {
+    const [notes, setNotes] = useState([]);
+    const [isRecording, setIsRecording] = useState(false);
+    const [startingTime, setStartingTime] = useState(0);
+
     return (
-        <SoundfontProvider
-            instrumentName="acoustic_grand_piano"
-            audioContext={audioContext}
-            hostname={soundfontHostname}
-            render={({ isLoading, playNote, stopNote }) => (
-                <div>
-                    <PlayContext.Provider values={{ isLoading, playNote, stopNote }}>
-                        <ReactPiano
-                            disabled={isLoading}
-                            noteRange={noteRange}
-                            playNote={playNote}
-                            stopNote={stopNote}
-                            width={1000}
-                            keyboardShortcuts={keyboardShortcuts}
-                        />
-                    </PlayContext.Provider>
-                </div>
-            )}
-        />
+        <NotesContext.Provider
+            value={{
+                notes,
+                isRecording,
+                setIsRecording,
+                setNotes,
+                startingTime,
+                setStartingTime,
+            }}
+        >
+            <SoundfontProvider
+                instrumentName="acoustic_grand_piano"
+                audioContext={audioContext}
+                hostname={soundfontHostname}
+                render={({ isLoading, playNote, stopNote }) => {
+                    return (
+                        <div>
+                            <PlayContext.Provider values={{ isLoading, playNote, stopNote }}>
+                                <ReactPiano
+                                    disabled={isLoading}
+                                    noteRange={noteRange}
+                                    playNote={playNote}
+                                    stopNote={stopNote}
+                                    width={1000}
+                                    keyboardShortcuts={keyboardShortcuts}
+                                />
+                                <ApolloProvider client={client}>
+                                    <Recorder />
+                                </ApolloProvider>
+                            </PlayContext.Provider>
+                        </div>
+                    );
+                }}
+            />
+        </NotesContext.Provider>
     );
 }
 

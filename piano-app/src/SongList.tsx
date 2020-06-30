@@ -10,6 +10,7 @@ import { SongType, Spacings } from "./shared/types";
 const SongsContainer = styled.ul`
     display: flex;
     flex-direction: column;
+    justify-content: center;
     padding: 0;
     margin: 0 0 ${Spacings.L} 0;
 `;

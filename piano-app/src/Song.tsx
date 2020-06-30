@@ -23,7 +23,7 @@ type Props = {
 const getLastNoteTime = (keyStrokes: Note[]) => keyStrokes[keyStrokes.length - 1].timestamp;
 
 const Song = (props: Props) => {
-    const { playNote, stopNote } = useContext(PlayContext);
+    // const { playNote, stopNote } = useContext(PlayContext);
     const [isPlaying, setIsPlaying] = useState(false);
     const [startingTime, setStartingTime] = useState(0);
 
@@ -47,9 +47,10 @@ const Song = (props: Props) => {
                     timeElapsed < keyStroke.timestamp + 100
                 ) {
                     console.log("play that note", keyStroke.midiNumber);
-                    playNote(keyStroke.midiNumber);
+                    // console.log(playNote);
+                    // playNote(keyStroke.midiNumber);
                 } else {
-                    stopNote(keyStroke.midiNumber);
+                    // stopNote(keyStroke.midiNumber);
                 }
             });
 

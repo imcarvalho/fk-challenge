@@ -14,7 +14,6 @@ const SaveContainer = styled.div`
 
 const SaveFormContainer = styled.div`
     display: flex;
-    flex-direction: row;
     align-items: flex-end;
     padding-bottom: 15px;
 `;

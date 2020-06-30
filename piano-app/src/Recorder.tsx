@@ -7,10 +7,15 @@ import SongList from "./SongList";
 import { NotesContext } from "./shared/Context";
 import { Spacings } from "./shared/types";
 
+const RecordContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
 const RecordStatusContainer = styled.div`
     padding-top: ${Spacings.L};
     display: flex;
-    flex-direction: row;
     align-items: center;
 `;
 
@@ -34,7 +39,7 @@ const Recorder = () => {
     };
 
     return (
-        <>
+        <RecordContainer>
             <RecordStatusContainer>
                 {isRecording === false ? (
                     <Button onClick={handleStartRecording} name="record">
@@ -49,7 +54,7 @@ const Recorder = () => {
             </RecordStatusContainer>
             {showSave && <SaveSong />}
             <SongList />
-        </>
+        </RecordContainer>
     );
 };
 
