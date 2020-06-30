@@ -32,12 +32,12 @@ const Song = (props: Props) => {
     let interval: number;
 
     useEffect(() => {
-        isPlaying && startTimer();
+        isPlaying && play();
 
         return () => clearInterval(interval);
     }, [isPlaying]);
 
-    const startTimer = () => {
+    const play = () => {
         const lastNoteTime = getLastNoteTime(props.keyStrokes);
         const unplayedNotes = [...props.keyStrokes];
 
@@ -53,6 +53,7 @@ const Song = (props: Props) => {
                     return;
                 }
 
+                // @TODO: this should be after the amount of time the key was pressed for
                 if (timeElapsed > keyStroke.timestamp + SAFETY_INTERVAL) {
                     stopNote(keyStroke.midiNumber);
 
