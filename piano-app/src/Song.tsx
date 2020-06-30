@@ -20,10 +20,12 @@ type Props = {
     keyStrokes: Note[];
 };
 
+const SAFETY_INTERVAL = 50;
+
 const getLastNoteTime = (keyStrokes: Note[]) => keyStrokes[keyStrokes.length - 1].timestamp;
 
 const Song = (props: Props) => {
-    // const { playNote, stopNote } = useContext(PlayContext);
+    const { playNote, stopNote } = useContext(PlayContext);
     const [isPlaying, setIsPlaying] = useState(false);
     const [startingTime, setStartingTime] = useState(0);
 
@@ -37,20 +39,25 @@ const Song = (props: Props) => {
 
     const startTimer = () => {
         const lastNoteTime = getLastNoteTime(props.keyStrokes);
+        const unplayedNotes = [...props.keyStrokes];
 
         interval = setInterval(() => {
             const timeElapsed = Date.now() - startingTime;
 
-            props.keyStrokes.forEach(keyStroke => {
+            unplayedNotes.forEach(keyStroke => {
                 if (
-                    timeElapsed > keyStroke.timestamp - 100 &&
-                    timeElapsed < keyStroke.timestamp + 100
+                    timeElapsed > keyStroke.timestamp - SAFETY_INTERVAL &&
+                    timeElapsed < keyStroke.timestamp + SAFETY_INTERVAL
                 ) {
-                    console.log("play that note", keyStroke.midiNumber);
-                    // console.log(playNote);
-                    // playNote(keyStroke.midiNumber);
-                } else {
-                    // stopNote(keyStroke.midiNumber);
+                    playNote(keyStroke.midiNumber);
+                    return;
+                }
+
+                if (timeElapsed > keyStroke.timestamp + SAFETY_INTERVAL) {
+                    stopNote(keyStroke.midiNumber);
+
+                    unplayedNotes.shift();
+                    return;
                 }
             });
 

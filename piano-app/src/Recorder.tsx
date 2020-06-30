@@ -4,7 +4,7 @@ import Button from "./shared/Button";
 import Stopwatch from "./Stopwatch";
 import SaveSong from "./SaveSong";
 import SongList from "./SongList";
-import { NotesContext } from "./shared/Context";
+import { NotesContext, PlayContext } from "./shared/Context";
 import { Spacings } from "./shared/types";
 
 const RecordContainer = styled.div`
@@ -19,7 +19,13 @@ const RecordStatusContainer = styled.div`
     align-items: center;
 `;
 
-const Recorder = () => {
+type Props = {
+    isLoading: boolean;
+    playNote: () => void;
+    stopNote: () => void;
+};
+
+const Recorder = (props: Props) => {
     const { isRecording, setIsRecording, setStartingTime, notes } = useContext(NotesContext);
 
     const [showSave, setShowSave] = useState(false);
@@ -46,14 +52,23 @@ const Recorder = () => {
                         Record
                     </Button>
                 ) : (
-                    <Button onClick={handleStopRecording} name="stop record">
+                    <Button onClick={handleStopRecording} name="stop recording">
                         Stop recording
                     </Button>
                 )}
                 <Stopwatch />
             </RecordStatusContainer>
             {showSave && <SaveSong />}
-            <SongList />
+
+            <PlayContext.Provider
+                value={{
+                    isLoading: props.isLoading,
+                    playNote: props.playNote,
+                    stopNote: props.stopNote,
+                }}
+            >
+                <SongList />
+            </PlayContext.Provider>
         </RecordContainer>
     );
 };

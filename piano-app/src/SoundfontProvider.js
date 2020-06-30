@@ -58,7 +58,6 @@ class SoundfontProvider extends React.Component {
     };
 
     playNote = midiNumber => {
-        console.log("yay");
         this.props.audioContext.resume().then(() => {
             const audioNode = this.state.instrument.play(midiNumber);
 
