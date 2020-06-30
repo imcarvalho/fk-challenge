@@ -4,6 +4,7 @@ import Button from "./shared/Button";
 import Stopwatch from "./Stopwatch";
 import SaveSong from "./SaveSong";
 import SongList from "./SongList";
+import Loading from "./shared/Loading";
 import { NotesContext } from "./shared/Context";
 
 const RecordStatusContainer = styled.div`

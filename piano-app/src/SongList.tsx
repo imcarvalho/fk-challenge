@@ -2,6 +2,7 @@ import React from "react";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import Alert from "./shared/Alert";
+import Loading from "./shared/Loading";
 
 const SongList = () => {
     const { loading, error, data } = useQuery(gql`
@@ -9,19 +10,22 @@ const SongList = () => {
             songs {
                 _id
                 title
-                keyStrokes
+                keyStrokes {
+                    midiNumber
+                    timestamp
+                }
             }
         }
     `);
 
     console.log("data", data);
 
-    // @TODO: show loading spinner
     // @TODO: show the song list, obviously
 
     return (
         <>
             <pre>{JSON.stringify(data)}</pre>
+            {loading && <Loading />}
             {error && <Alert text="An error ocurred while loading the songs." />}
         </>
     );

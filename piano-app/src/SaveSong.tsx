@@ -5,6 +5,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { NotesContext } from "./shared/Context";
 import Button from "./shared/Button";
 import Alert from "./shared/Alert";
+import Loading from "./shared/Loading";
 
 const SaveContainer = styled.div`
     display: flex;
@@ -80,6 +81,7 @@ const SaveSong = () => {
                     </Button>
                 </SaveFormContainer>
             </form>
+            {loading && <Loading />}
             {error && <Alert text="An error occurred while saving the song." />}
         </SaveContainer>
     );
