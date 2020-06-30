@@ -2,6 +2,7 @@ import React from "react";
 import { Piano as ReactPiano, KeyboardShortcuts, MidiNumbers } from "react-piano";
 import SoundfontProvider from "./SoundfontProvider";
 import "react-piano/dist/styles.css";
+import { PlayContext } from "./shared/Context";
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const soundfontHostname = "https://d1pzp51pvbm36p.cloudfront.net";
@@ -24,14 +25,16 @@ function Piano() {
             hostname={soundfontHostname}
             render={({ isLoading, playNote, stopNote }) => (
                 <div>
-                    <ReactPiano
-                        disabled={isLoading}
-                        noteRange={noteRange}
-                        playNote={playNote}
-                        stopNote={stopNote}
-                        width={1000}
-                        keyboardShortcuts={keyboardShortcuts}
-                    />
+                    <PlayContext.Provider values={{ isLoading, playNote, stopNote }}>
+                        <ReactPiano
+                            disabled={isLoading}
+                            noteRange={noteRange}
+                            playNote={playNote}
+                            stopNote={stopNote}
+                            width={1000}
+                            keyboardShortcuts={keyboardShortcuts}
+                        />
+                    </PlayContext.Provider>
                 </div>
             )}
         />

@@ -9,3 +9,9 @@ export const NotesContext = React.createContext({
     setNotes: (notes: Note[]) => {},
     setStartingTime: (time: number) => {},
 });
+
+export const PlayContext = React.createContext({
+    isLoading: false,
+    playNote: (midinumber: number) => {},
+    stopNote: (midinumber: number) => {},
+});
