@@ -17,6 +17,6 @@ export const NewSongsContext = React.createContext({
 
 export const PlayContext = React.createContext({
     isLoading: false,
-    playNote: (midinumber: number) => {},
-    stopNote: (midinumber: number) => {},
+    playNote: (midiNumber: number) => {},
+    stopNote: (midiNumber: number) => {},
 });
