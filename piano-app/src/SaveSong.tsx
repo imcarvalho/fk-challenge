@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
-import { NotesContext } from "./shared/Context";
+import { NotesContext, NewSongsContext } from "./shared/Context";
 import Button from "./shared/Button";
 import Alert from "./shared/Alert";
 import Loading from "./shared/Loading";
@@ -33,9 +33,14 @@ const Label = styled.label`
     font-size: 0.8em;
 `;
 
-const SaveSong = () => {
+type Props = {
+    onSave: () => void;
+};
+
+const SaveSong = (props: Props) => {
     const { notes } = useContext(NotesContext);
-    const [addSong, { loading, error }] = useMutation(gql`
+    const { newSongs, setNewSongs } = useContext(NewSongsContext);
+    const [addSong, { loading, error, data }] = useMutation(gql`
         mutation AddSong($title: String!, $keyStrokes: [NoteInput]!) {
             addSong(title: $title, keyStrokes: $keyStrokes) {
                 _id
@@ -48,6 +53,14 @@ const SaveSong = () => {
         }
     `);
     const [songTitle, setSongTitle] = useState("");
+
+    useEffect(() => {
+        // @ts-ignore
+        if (data && newSongs.find(newSong => newSong._id === data.addSong._id) === undefined) {
+            setNewSongs([...newSongs, data.addSong]);
+            props.onSave();
+        }
+    }, [data]);
 
     const handleTitleUpdate = (e: React.ChangeEvent<HTMLInputElement>) =>
         setSongTitle(e.target.value);

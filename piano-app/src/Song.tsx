@@ -53,7 +53,7 @@ const Song = (props: Props) => {
                     return;
                 }
 
-                // @TODO: this should be after the amount of time the key was pressed for
+                // @TODO: this should be after the amount of time the key was pressed
                 if (timeElapsed > keyStroke.timestamp + SAFETY_INTERVAL) {
                     stopNote(keyStroke.midiNumber);
 

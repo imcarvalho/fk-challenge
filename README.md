@@ -10,8 +10,9 @@ A challenge involving recording a piano song
 - [x] Define a song title when storing a song on stop recording
 - [ ] When defining a song name, do not play notes
 - [ ] Also store the amount of time the note should be played
-- [ ] Reload Song list when a new one is saved
+- [x] Reload Song list when a new one is saved
 - [x] Show a list of stored songs with title
-- [ ] Enable replaying stored songs with a small play button next to the title (with correct timing of replayed keys!)
+- [x] Enable replaying stored songs with a small play button next to the title (with correct timing of replayed keys!)
 - [ ] URL for the Apollo client should come from a config file
+- [ ] Write tests
 - [ ] Write the documentation
