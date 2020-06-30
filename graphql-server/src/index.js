@@ -8,7 +8,7 @@ new MongoMemoryServer({ instance: { port: 27017 } });
 // this API is just an example, you can modify any parts if needed for the task
 const typeDefs = gql`
     type Note {
-        id: ID!
+        _id: ID!
         midiNumber: Int
         timestamp: Int
     }

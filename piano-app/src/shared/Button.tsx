@@ -6,9 +6,9 @@ const ButtonStyle = styled.button`
     background-color: ${props => (props.disabled ? Colors.Disabled : Colors.Background)};
     border: 2px solid ${props => (props.disabled ? Colors.Disabled : Colors.Background)};
     color: #ffffff;
-    margin: 1em;
-    padding: 0.25em 2em;
+    padding: 5px 25px;
     border-radius: 3px;
+    height: 2em;
 `;
 
 type Props = {

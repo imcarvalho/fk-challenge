@@ -4,17 +4,29 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 import { NotesContext } from "./shared/Context";
 import Button from "./shared/Button";
-import { Status } from "./shared/types";
+import Alert from "./shared/Alert";
 
 const SaveContainer = styled.div`
     display: flex;
+    flex-direction: column;
+`;
+
+const SaveFormContainer = styled.div`
+    display: flex;
     flex-direction: row;
+    align-items: flex-end;
+    padding-bottom: 15px;
 `;
 
 const InputContainer = styled.div`
     display: flex;
     flex-direction: column;
     padding-top: 3px;
+    padding-right: 15px;
+`;
+
+const Input = styled.input`
+    padding: 4px;
 `;
 
 const Label = styled.label`
@@ -23,7 +35,7 @@ const Label = styled.label`
 
 const SaveSong = () => {
     const { notes } = useContext(NotesContext);
-    const [addSong, { data }] = useMutation(gql`
+    const [addSong, { loading, error }] = useMutation(gql`
         mutation AddSong($title: String!, $keyStrokes: [NoteInput]!) {
             addSong(title: $title, keyStrokes: $keyStrokes) {
                 _id
@@ -36,7 +48,6 @@ const SaveSong = () => {
         }
     `);
     const [songTitle, setSongTitle] = useState("");
-    const [status, setStatus] = useState(Status.Idle);
 
     //@TODO: how to not trigger a play note when entering the song title
 
@@ -47,30 +58,30 @@ const SaveSong = () => {
         e.preventDefault();
 
         addSong({ variables: { title: songTitle, keyStrokes: notes } });
-
-        // @TODO: do the save here
-        console.log("save", notes);
     };
 
     return (
-        <form onSubmit={handleSave}>
-            <SaveContainer>
-                <InputContainer>
-                    <Label htmlFor="songTitle">Song title</Label>
-                    <input
-                        required
-                        type="text"
-                        value={songTitle}
-                        onChange={handleTitleUpdate}
-                        name="song title"
-                        id="songTitle"
-                    />
-                </InputContainer>
-                <Button name="save" type="submit" disabled={status === Status.Loading}>
-                    Save
-                </Button>
-            </SaveContainer>
-        </form>
+        <SaveContainer>
+            <form onSubmit={handleSave}>
+                <SaveFormContainer>
+                    <InputContainer>
+                        <Label htmlFor="songTitle">Song title</Label>
+                        <Input
+                            required
+                            type="text"
+                            value={songTitle}
+                            onChange={handleTitleUpdate}
+                            name="song title"
+                            id="songTitle"
+                        />
+                    </InputContainer>
+                    <Button name="save" type="submit" disabled={loading}>
+                        Save
+                    </Button>
+                </SaveFormContainer>
+            </form>
+            {error && <Alert text="An error occurred while saving the song." />}
+        </SaveContainer>
     );
 };
 
