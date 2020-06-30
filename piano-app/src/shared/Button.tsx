@@ -3,12 +3,14 @@ import styled from "styled-components";
 import { Colors, Spacings } from "./types";
 
 const ButtonStyle = styled.button`
-    background-color: ${props => (props.disabled ? Colors.Disabled : Colors.Background)};
-    border: 2px solid ${props => (props.disabled ? Colors.Disabled : Colors.Background)};
     color: #ffffff;
-    padding: ${Spacings.S} ${Spacings.XL};
+    background-color: ${props => (props.disabled ? Colors.Disabled : Colors.Background)};
+    border: 1px solid ${props => (props.disabled ? Colors.Disabled : Colors.Background)};
     border-radius: 3px;
+    padding: ${Spacings.S} ${Spacings.XL};
     height: 2em;
+    cursor: pointer;
+    font-weight: bold;
 `;
 
 type Props = {

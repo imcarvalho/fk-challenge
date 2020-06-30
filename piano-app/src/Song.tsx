@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import Button from "./shared/Button";
+import PlayButton from "./shared/PlayButton";
 import { Note, Spacings } from "./shared/types";
 import { formatTime } from "./shared/utils";
 
@@ -20,21 +20,23 @@ type Props = {
 };
 
 const Song = (props: Props) => {
-    const handlePlay = () => {
+    const [isPlaying, setIsPlaying] = useState(false);
+
+    const handlePlayClick = () => {
+        if (isPlaying) {
+            setIsPlaying(false);
+            return;
+        }
+
         console.log("how to play?");
+        setIsPlaying(true);
     };
 
-    const getSongLength = () => {
-        const lastTimestamp = props.keyStrokes[props.keyStrokes.length - 1].timestamp;
-
-        return formatTime(lastTimestamp);
-    };
+    const getSongLength = () => formatTime(props.keyStrokes[props.keyStrokes.length - 1].timestamp);
 
     return (
         <ListItem>
-            <Button name="play" onClick={handlePlay}>
-                Play
-            </Button>
+            <PlayButton onClick={handlePlayClick} isPlaying={isPlaying} />
             <SongTitle>
                 {props.title} ({getSongLength()})
             </SongTitle>
