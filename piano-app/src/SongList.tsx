@@ -46,7 +46,7 @@ const SongList = () => {
         }
     `);
 
-    const songsDisplay = data ? [...newSongs, ...data.songs] : newSongs;
+    const songsDisplay = data ? [...data.songs, ...newSongs] : newSongs;
 
     return (
         <>
