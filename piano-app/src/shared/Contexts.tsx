@@ -5,14 +5,11 @@ export const RecordingContext = React.createContext({
     notes: [],
     isRecording: false,
     startingTime: 0,
+    newSongs: [],
     setIsRecording: (isRecording: boolean) => {},
     setNotes: (notes: Note[]) => {},
     setStartingTime: (time: number) => {},
-});
-
-export const NewSongsContext = React.createContext({
-    newSongs: [],
-    setNewSongs: (songs: any) => {},
+    setNewSongs: (songs: SongType[]) => {},
 });
 
 export const PlayContext = React.createContext({

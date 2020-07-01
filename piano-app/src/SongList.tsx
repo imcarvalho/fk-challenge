@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/react-hooks";
 import Song from "./Song";
 import Alert from "./shared/Alert";
 import Loading from "./shared/Loading";
-import { NewSongsContext } from "./shared/Contexts";
+import { RecordingContext } from "./shared/Contexts";
 import { SongType, Spacings } from "./shared/types";
 
 const SongsContainer = styled.ul`
@@ -19,7 +19,7 @@ const SongsContainer = styled.ul`
 `;
 
 const SongList = () => {
-    const { newSongs } = useContext(NewSongsContext);
+    const { newSongs } = useContext(RecordingContext);
 
     const { loading, error, data } = useQuery(gql`
         query {

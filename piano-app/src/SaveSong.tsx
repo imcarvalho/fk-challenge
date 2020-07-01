@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
-import { RecordingContext, NewSongsContext } from "./shared/Contexts";
+import { RecordingContext } from "./shared/Contexts";
 import Button from "./shared/Button";
 import Alert from "./shared/Alert";
 import Loading from "./shared/Loading";
@@ -38,8 +38,7 @@ type Props = {
 };
 
 const SaveSong = (props: Props) => {
-    const { notes } = useContext(RecordingContext);
-    const { newSongs, setNewSongs } = useContext(NewSongsContext);
+    const { notes, newSongs, setNewSongs } = useContext(RecordingContext);
 
     const [addSong, { loading, error, data }] = useMutation(gql`
         mutation AddSong($title: String!, $keyStrokes: [NoteInput]!) {

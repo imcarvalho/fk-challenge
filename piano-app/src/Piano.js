@@ -28,6 +28,7 @@ function Piano() {
     const [notes, setNotes] = useState([]);
     const [isRecording, setIsRecording] = useState(false);
     const [startingTime, setStartingTime] = useState(0);
+    const [newSongs, setNewSongs] = useState([]);
 
     return (
         <RecordingContext.Provider
@@ -38,6 +39,8 @@ function Piano() {
                 setNotes,
                 startingTime,
                 setStartingTime,
+                newSongs,
+                setNewSongs,
             }}
         >
             <SoundfontProvider
