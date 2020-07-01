@@ -1,4 +1,4 @@
-export type Note = { midiNumber: number; timestamp: number };
+export type Note = { midiNumber: number; startTime: number; endTime: number };
 
 export type SongType = { _id: string; title: string; keyStrokes: Note[] };
 

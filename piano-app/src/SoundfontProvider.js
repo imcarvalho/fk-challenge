@@ -64,7 +64,10 @@ class SoundfontProvider extends React.Component {
             if (this.context.isRecording) {
                 this.context.setNotes([
                     ...this.context.notes,
-                    { midiNumber, timestamp: Date.now() - this.context.startingTime },
+                    {
+                        midiNumber,
+                        startTime: Date.now() - this.context.startingTime,
+                    },
                 ]);
             }
 
@@ -83,6 +86,26 @@ class SoundfontProvider extends React.Component {
             }
             const audioNode = this.state.activeAudioNodes[midiNumber];
             audioNode.stop();
+
+            if (this.context.isRecording) {
+                let replaced = false;
+                // @TODO: revisit this contrived logic
+                const updatedNotes = this.context.notes
+                    .slice()
+                    .reverse()
+                    .map(note => {
+                        if (replaced === false && note.midiNumber === midiNumber) {
+                            replaced = true;
+                            return { ...note, endTime: Date.now() - this.context.startingTime };
+                        }
+                        return note;
+                    })
+                    .slice()
+                    .reverse();
+
+                this.context.setNotes(updatedNotes);
+            }
+
             this.setState({
                 activeAudioNodes: Object.assign({}, this.state.activeAudioNodes, {
                     [midiNumber]: null,

@@ -47,7 +47,8 @@ const SaveSong = (props: Props) => {
                 title
                 keyStrokes {
                     midiNumber
-                    timestamp
+                    startTime
+                    endTime
                 }
             }
         }

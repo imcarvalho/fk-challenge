@@ -10,12 +10,14 @@ const typeDefs = gql`
     type Note {
         _id: ID!
         midiNumber: Int
-        timestamp: Int
+        startTime: Int
+        endTime: Int
     }
 
     input NoteInput {
         midiNumber: Int
-        timestamp: Int
+        startTime: Int
+        endTime: Int
     }
 
     type Song {

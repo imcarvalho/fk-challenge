@@ -40,7 +40,8 @@ const SongList = () => {
                 title
                 keyStrokes {
                     midiNumber
-                    timestamp
+                    startTime
+                    endTime
                 }
             }
         }
@@ -53,7 +54,7 @@ const SongList = () => {
             <h2>My Songs</h2>
             {loading && <Loading />}
             {error && <Alert text="An error ocurred while loading the songs." />}
-            {data && data.length === 0 ? (
+            {songsDisplay.length === 0 ? (
                 <p>You don't have any recorded songs yet.</p>
             ) : (
                 <SongsContainer>
