@@ -88,20 +88,17 @@ class SoundfontProvider extends React.Component {
             audioNode.stop();
 
             if (this.context.isRecording) {
-                let replaced = false;
-                // @TODO: revisit this contrived logic
-                const updatedNotes = this.context.notes
-                    .slice()
-                    .reverse()
-                    .map(note => {
-                        if (replaced === false && note.midiNumber === midiNumber) {
-                            replaced = true;
-                            return { ...note, endTime: Date.now() - this.context.startingTime };
-                        }
-                        return note;
-                    })
-                    .slice()
-                    .reverse();
+                const updatedNotes = [...this.context.notes];
+
+                for (let i = updatedNotes.length - 1; i >= 0; i--) {
+                    if (updatedNotes[i].midiNumber === midiNumber) {
+                        updatedNotes[i] = {
+                            ...updatedNotes[i],
+                            endTime: Date.now() - this.context.startingTime,
+                        };
+                        return;
+                    }
+                }
 
                 this.context.setNotes(updatedNotes);
             }
