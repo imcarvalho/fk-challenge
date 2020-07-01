@@ -44,7 +44,7 @@ function Piano() {
                 instrumentName="acoustic_grand_piano"
                 audioContext={audioContext}
                 hostname={soundfontHostname}
-                render={({ isLoading, playNote, stopNote, stopAllNotes }) => {
+                render={({ isLoading, playNote, stopNote }) => {
                     return (
                         <div>
                             <ReactPiano
@@ -60,7 +60,6 @@ function Piano() {
                                     isLoading={isLoading}
                                     playNote={playNote}
                                     stopNote={stopNote}
-                                    stopAllNotes={stopAllNotes}
                                 />
                             </ApolloProvider>
                         </div>

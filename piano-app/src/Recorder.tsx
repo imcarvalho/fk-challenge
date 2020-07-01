@@ -23,7 +23,6 @@ type Props = {
     isLoading: boolean;
     playNote: () => void;
     stopNote: () => void;
-    stopAllNotes: () => void;
 };
 
 const Recorder = (props: Props) => {
@@ -70,7 +69,6 @@ const Recorder = (props: Props) => {
                         isLoading: props.isLoading,
                         playNote: props.playNote,
                         stopNote: props.stopNote,
-                        stopAllNotes: props.stopAllNotes,
                     }}
                 >
                     <SongList />
