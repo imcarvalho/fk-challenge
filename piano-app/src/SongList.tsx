@@ -8,9 +8,14 @@ import Loading from "./shared/Loading";
 import { RecordingContext } from "./shared/Contexts";
 import { SongType, Spacings } from "./shared/types";
 
-const SongsContainer = styled.ul`
+const SongListContainer = styled.div`
+    display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+`;
+
+const SongListStyle = styled.ul`
     padding: 0;
     margin: 0 0 ${Spacings.L} 0;
     display: grid;
@@ -50,20 +55,20 @@ const SongList = () => {
     const songsDisplay = data ? [...data.songs, ...newSongs] : newSongs;
 
     return (
-        <>
+        <SongListContainer>
             <h2>My Songs</h2>
             {loading && <Loading />}
             {error && <Alert text="An error ocurred while loading the songs." />}
             {songsDisplay.length === 0 ? (
                 <p>You don't have any recorded songs yet.</p>
             ) : (
-                <SongsContainer>
+                <SongListStyle>
                     {songsDisplay.map((song: SongType) => (
                         <Song key={song._id} title={song.title} keyStrokes={song.keyStrokes} />
                     ))}
-                </SongsContainer>
+                </SongListStyle>
             )}
-        </>
+        </SongListContainer>
     );
 };
 

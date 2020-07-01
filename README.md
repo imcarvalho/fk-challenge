@@ -1,6 +1,6 @@
 # fk-challenge
 
-A challenge involving recording a piano song
+A challenge involving recording a piano song 🎹⏺
 
 ## Running the app
 
@@ -26,6 +26,7 @@ Before hitting `npm i && npm start` on both `piano-app` and `graphql-server`, yo
 ## Technical discussion
 
 I did not refactor the whole project, as I believe it was out of the scope of this challenge; however, if this was a real life situation, I would've converted everything into Typescript.
+I also did not update the package versions of the pre-included project.
 
 I tried to keep the changes to a minimal to the original components, but I had to mainly update `SoundfontProvider` in order to save all the notes being played and their timings inside the methods `playNote` and `stopNote`. I also updated the GraphQL schema, so a Song would be composed of a `miniNumber`, a `startTime` (when that key was pressed), and an `endTime` (when the key was released).
 The `Piano` component was also updated, in order to provide the context for the application and make use of the functions that the `SoundfontProvider` was providing.
