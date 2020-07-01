@@ -96,7 +96,7 @@ class SoundfontProvider extends React.Component {
                             ...updatedNotes[i],
                             endTime: Date.now() - this.context.startingTime,
                         };
-                        return;
+                        break;
                     }
                 }
 
