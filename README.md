@@ -8,7 +8,7 @@ A challenge involving recording a piano song
 - [x] Add a stopwatch
 - [x] Store the timestamp for each note
 - [x] Define a song title when storing a song on stop recording
-- [ ] When defining a song name, do not play notes
+- [x] When defining a song name, do not play notes - turned out as do not allow interaction with the piano unless we're recording
 - [ ] Also store the amount of time the note should be played
 - [x] Reload Song list when a new one is saved
 - [x] Show a list of stored songs with title
