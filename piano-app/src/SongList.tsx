@@ -34,6 +34,8 @@ const SongList = () => {
         }
     `);
 
+    const songsDisplay = data ? [...data.songs, ...newSongs] : newSongs;
+
     return (
         <>
             <h2>My Songs</h2>
@@ -43,11 +45,7 @@ const SongList = () => {
                 <p>You don't have any recorded songs yet.</p>
             ) : (
                 <SongsContainer>
-                    {data &&
-                        data.songs.map((song: SongType) => (
-                            <Song key={song._id} title={song.title} keyStrokes={song.keyStrokes} />
-                        ))}
-                    {newSongs.map((song: SongType) => (
+                    {songsDisplay.map((song: SongType) => (
                         <Song key={song._id} title={song.title} keyStrokes={song.keyStrokes} />
                     ))}
                 </SongsContainer>

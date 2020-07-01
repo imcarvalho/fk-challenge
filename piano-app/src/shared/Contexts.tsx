@@ -12,7 +12,7 @@ export const RecordingContext = React.createContext({
 
 export const NewSongsContext = React.createContext({
     newSongs: [],
-    setNewSongs: (song: any) => {},
+    setNewSongs: (songs: any) => {},
 });
 
 export const PlayContext = React.createContext({
