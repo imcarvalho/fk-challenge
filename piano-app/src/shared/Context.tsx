@@ -1,5 +1,5 @@
 import React from "react";
-import { Note, SongType } from "./types";
+import { Note } from "./types";
 
 export const NotesContext = React.createContext({
     notes: [],

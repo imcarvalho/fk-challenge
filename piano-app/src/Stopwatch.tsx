@@ -15,9 +15,9 @@ const Stopwatch = () => {
     let interval: number;
 
     useEffect(() => {
-        isRecording ? startTimer() : stopTimer();
+        isRecording && startTimer();
 
-        return () => clearInterval(interval);
+        return () => stopTimer();
     }, [isRecording]);
 
     const startTimer = () => {
@@ -26,7 +26,10 @@ const Stopwatch = () => {
         }, 1000);
     };
 
-    const stopTimer = () => setCurrentTime(0);
+    const stopTimer = () => {
+        setCurrentTime(0);
+        clearInterval(interval);
+    };
 
     return <StopwatchContainer>{formatTime(currentTime)}</StopwatchContainer>;
 };

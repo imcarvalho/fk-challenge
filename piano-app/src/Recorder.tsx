@@ -32,6 +32,7 @@ const Recorder = (props: Props) => {
     const [newSongs, setNewSongs] = useState([]);
 
     const handleStartRecording = () => {
+        setShowSave(false);
         setStartingTime(Date.now());
         setIsRecording(true);
     };
