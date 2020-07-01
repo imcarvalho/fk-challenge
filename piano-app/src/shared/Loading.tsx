@@ -23,8 +23,8 @@ const LoadingSpinner = styled.div`
         height: 32px;
         margin: 8px;
         border-radius: 50%;
-        border: 6px solid ${Colors.Background};
-        border-color: ${Colors.Background} transparent ${Colors.Background} transparent;
+        border: 6px solid ${Colors.ButtonBackground};
+        border-color: ${Colors.ButtonBackground} transparent ${Colors.ButtonBackground} transparent;
         animation: ${spinningAnimation} 1.2s linear infinite;
     }
 `;

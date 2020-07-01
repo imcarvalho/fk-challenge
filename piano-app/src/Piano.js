@@ -5,7 +5,7 @@ import { Piano as ReactPiano, KeyboardShortcuts, MidiNumbers } from "react-piano
 import SoundfontProvider from "./SoundfontProvider";
 import "react-piano/dist/styles.css";
 import Recorder from "./Recorder";
-import { NotesContext } from "./shared/Contexts";
+import { RecordingContext } from "./shared/Contexts";
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const soundfontHostname = "https://d1pzp51pvbm36p.cloudfront.net";
@@ -30,7 +30,7 @@ function Piano() {
     const [startingTime, setStartingTime] = useState(0);
 
     return (
-        <NotesContext.Provider
+        <RecordingContext.Provider
             value={{
                 notes,
                 isRecording,
@@ -66,7 +66,7 @@ function Piano() {
                     );
                 }}
             />
-        </NotesContext.Provider>
+        </RecordingContext.Provider>
     );
 }
 

@@ -4,7 +4,7 @@ import Button from "./shared/Button";
 import Stopwatch from "./Stopwatch";
 import SaveSong from "./SaveSong";
 import SongList from "./SongList";
-import { NotesContext, PlayContext, NewSongsContext } from "./shared/Contexts";
+import { RecordingContext, PlayContext, NewSongsContext } from "./shared/Contexts";
 import { Spacings } from "./shared/types";
 
 const RecordContainer = styled.div`
@@ -26,7 +26,7 @@ type Props = {
 };
 
 const Recorder = (props: Props) => {
-    const { isRecording, setIsRecording, setStartingTime, notes } = useContext(NotesContext);
+    const { isRecording, setIsRecording, setStartingTime, notes } = useContext(RecordingContext);
 
     const [showSave, setShowSave] = useState(false);
     const [newSongs, setNewSongs] = useState([]);

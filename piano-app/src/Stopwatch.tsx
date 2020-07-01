@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
-import { NotesContext } from "./shared/Contexts";
+import { RecordingContext } from "./shared/Contexts";
 import { Spacings } from "./shared/types";
 import { formatTime } from "./shared/utils";
 
@@ -9,7 +9,7 @@ const StopwatchContainer = styled.div`
 `;
 
 const Stopwatch = () => {
-    const { isRecording, startingTime } = useContext(NotesContext);
+    const { isRecording, startingTime } = useContext(RecordingContext);
     const [currentTime, setCurrentTime] = useState(0);
 
     let interval: number;

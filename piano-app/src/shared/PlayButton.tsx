@@ -6,8 +6,8 @@ import { Colors } from "./types";
 
 const PlayButtonStyle = styled.button`
     color: #ffffff;
-    background-color: ${Colors.Background};
-    border: 1px solid ${Colors.Background};
+    background-color: ${Colors.ButtonBackground};
+    border: 1px solid ${Colors.ButtonBackground};
     border-radius: 3px;
     box-sizing: border-box;
     width: 24px;

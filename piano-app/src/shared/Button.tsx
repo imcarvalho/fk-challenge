@@ -4,8 +4,9 @@ import { Colors, Spacings } from "./types";
 
 const ButtonStyle = styled.button`
     color: #ffffff;
-    background-color: ${props => (props.disabled ? Colors.Disabled : Colors.Background)};
-    border: 1px solid ${props => (props.disabled ? Colors.Disabled : Colors.Background)};
+    background-color: ${props =>
+        props.disabled ? Colors.ButtonDisabled : Colors.ButtonBackground};
+    border: 1px solid ${props => (props.disabled ? Colors.ButtonDisabled : Colors.ButtonBackground)};
     border-radius: 3px;
     padding: ${Spacings.S} ${Spacings.XL};
     height: 2em;

@@ -1,7 +1,7 @@
 import React from "react";
-import { Note } from "./types";
+import { Note, SongType } from "./types";
 
-export const NotesContext = React.createContext({
+export const RecordingContext = React.createContext({
     notes: [],
     isRecording: false,
     startingTime: 0,
