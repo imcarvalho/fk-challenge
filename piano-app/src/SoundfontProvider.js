@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Soundfont from "soundfont-player";
-import { NotesContext } from "./shared/Context";
+import { NotesContext } from "./shared/Contexts";
 
 class SoundfontProvider extends React.Component {
     static contextType = NotesContext;

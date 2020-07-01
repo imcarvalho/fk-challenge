@@ -19,4 +19,5 @@ export const PlayContext = React.createContext({
     isLoading: false,
     playNote: (midiNumber: number) => {},
     stopNote: (midiNumber: number) => {},
+    stopAllNotes: () => {},
 });

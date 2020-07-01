@@ -5,7 +5,7 @@ import { Piano as ReactPiano, KeyboardShortcuts, MidiNumbers } from "react-piano
 import SoundfontProvider from "./SoundfontProvider";
 import "react-piano/dist/styles.css";
 import Recorder from "./Recorder";
-import { NotesContext } from "./shared/Context";
+import { NotesContext } from "./shared/Contexts";
 
 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
 const soundfontHostname = "https://d1pzp51pvbm36p.cloudfront.net";
@@ -44,7 +44,7 @@ function Piano() {
                 instrumentName="acoustic_grand_piano"
                 audioContext={audioContext}
                 hostname={soundfontHostname}
-                render={({ isLoading, playNote, stopNote }) => {
+                render={({ isLoading, playNote, stopNote, stopAllNotes }) => {
                     return (
                         <div>
                             <ReactPiano
@@ -60,6 +60,7 @@ function Piano() {
                                     isLoading={isLoading}
                                     playNote={playNote}
                                     stopNote={stopNote}
+                                    stopAllNotes={stopAllNotes}
                                 />
                             </ApolloProvider>
                         </div>

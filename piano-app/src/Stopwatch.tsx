@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
-import { NotesContext } from "./shared/Context";
+import { NotesContext } from "./shared/Contexts";
 import { Spacings } from "./shared/types";
 import { formatTime } from "./shared/utils";
 

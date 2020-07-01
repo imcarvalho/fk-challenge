@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import PlayButton from "./shared/PlayButton";
-import { PlayContext } from "./shared/Context";
+import { PlayContext } from "./shared/Contexts";
 import { Note, Spacings } from "./shared/types";
 import { formatTime } from "./shared/utils";
 

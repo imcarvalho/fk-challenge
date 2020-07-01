@@ -4,7 +4,7 @@ import Button from "./shared/Button";
 import Stopwatch from "./Stopwatch";
 import SaveSong from "./SaveSong";
 import SongList from "./SongList";
-import { NotesContext, PlayContext, NewSongsContext } from "./shared/Context";
+import { NotesContext, PlayContext, NewSongsContext } from "./shared/Contexts";
 import { Spacings } from "./shared/types";
 
 const RecordContainer = styled.div`
@@ -23,6 +23,7 @@ type Props = {
     isLoading: boolean;
     playNote: () => void;
     stopNote: () => void;
+    stopAllNotes: () => void;
 };
 
 const Recorder = (props: Props) => {
@@ -69,6 +70,7 @@ const Recorder = (props: Props) => {
                         isLoading: props.isLoading,
                         playNote: props.playNote,
                         stopNote: props.stopNote,
+                        stopAllNotes: props.stopAllNotes,
                     }}
                 >
                     <SongList />

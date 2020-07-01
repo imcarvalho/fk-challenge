@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/react-hooks";
 import Song from "./Song";
 import Alert from "./shared/Alert";
 import Loading from "./shared/Loading";
-import { NewSongsContext } from "./shared/Context";
+import { NewSongsContext } from "./shared/Contexts";
 import { SongType, Spacings } from "./shared/types";
 
 const SongsContainer = styled.ul`
