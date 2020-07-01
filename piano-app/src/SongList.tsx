@@ -14,8 +14,20 @@ const SongsContainer = styled.ul`
     padding: 0;
     margin: 0 0 ${Spacings.L} 0;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     column-gap: ${Spacings.L};
+    grid-template-columns: repeat(4, 1fr);
+
+    @media (max-width: 128px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 `;
 
 const SongList = () => {
