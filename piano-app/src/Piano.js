@@ -22,7 +22,7 @@ const keyboardShortcuts = KeyboardShortcuts.create({
 });
 
 const client = new ApolloClient({
-    uri: "//localhost:4000",
+    uri: process.env.REACT_APP_APOLLO_URL,
 });
 
 function Piano() {

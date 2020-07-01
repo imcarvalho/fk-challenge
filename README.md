@@ -2,6 +2,12 @@
 
 A challenge involving recording a piano song
 
+## Running the app
+
+Before hitting `npm i && npm start` on both `piano-app` and `graphql-server`, you'll also need to add an `.env` file at the root of the `piano-app`, with the Apollo Client URL like this:
+
+`REACT_APP_APOLLO_URL=<the actual URL>`
+
 ## TODO list
 
 - [x] Provide a button to start/stop recording a sequence of keys played on the Piano UI
@@ -13,7 +19,7 @@ A challenge involving recording a piano song
 - [x] Reload Song list when a new one is saved
 - [x] Show a list of stored songs with title
 - [x] Enable replaying stored songs with a small play button next to the title (with correct timing of replayed keys!)
-- [ ] URL for the Apollo client should come from a config file
+- [x] URL for the Apollo client should come from a config file
 - [ ] Write tests
 - [x] Write the documentation
 
