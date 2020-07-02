@@ -32,6 +32,7 @@ const typeDefs = gql`
 
     type Mutation {
         addSong(title: String, keyStrokes: [NoteInput]): Song
+        removeSongs: Boolean
     }
 `;
 
@@ -52,6 +53,12 @@ const resolvers = {
             const response = await mongodb.collection("songs").insertOne(newSong);
 
             return { ...newSong, _id: response.insertedId };
+        },
+        removeSongs: async () => {
+            const mongodb = await getMongoConnection();
+            await mongodb.collection("songs").deleteMany();
+
+            return true;
         },
     },
 };

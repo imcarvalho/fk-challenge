@@ -4,6 +4,12 @@ A challenge involving recording a piano song 🎹⏺
 
 ## Running the app
 
+### With docker
+
+TODO
+
+### In the host machine
+
 Before hitting `npm i && npm start` on both `piano-app` and `graphql-server`, you'll also need to add an `.env` file at the root of the `piano-app`, with the Apollo Client URL like this:
 
 `REACT_APP_APOLLO_URL=<the actual URL>`
