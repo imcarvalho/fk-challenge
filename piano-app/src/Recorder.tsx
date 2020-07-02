@@ -43,11 +43,15 @@ const Recorder = () => {
         <RecordContainer>
             <RecordStatusContainer>
                 {isRecording === false ? (
-                    <Button onClick={handleStartRecording} name="record">
+                    <Button data-cy="button-record" onClick={handleStartRecording} name="record">
                         Record
                     </Button>
                 ) : (
-                    <Button onClick={handleStopRecording} name="stop recording">
+                    <Button
+                        data-cy="button-stop"
+                        onClick={handleStopRecording}
+                        name="stop recording"
+                    >
                         Stop recording
                     </Button>
                 )}

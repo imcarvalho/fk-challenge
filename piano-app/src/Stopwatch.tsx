@@ -31,7 +31,7 @@ const Stopwatch = () => {
         clearInterval(interval);
     };
 
-    return <StopwatchContainer>{formatTime(currentTime)}</StopwatchContainer>;
+    return <StopwatchContainer data-cy="stopwatch">{formatTime(currentTime)}</StopwatchContainer>;
 };
 
 export default Stopwatch;

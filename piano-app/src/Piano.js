@@ -52,7 +52,7 @@ function Piano() {
                     return (
                         <div>
                             <ReactPiano
-                                disabled={isLoading || isRecording === false}
+                                disabled={isLoading || !isRecording}
                                 noteRange={noteRange}
                                 playNote={playNote}
                                 stopNote={stopNote}
