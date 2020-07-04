@@ -28,7 +28,7 @@ You'll need to add an `.env` file at the root of the `piano-app`, with the Apoll
 - [x] Show a list of stored songs with title
 - [x] Enable replaying stored songs with a small play button next to the title (with correct timing of replayed keys!)
 - [x] URL for the Apollo client should come from a config file
-- [ ] Write tests
+- [x] Write tests
 - [x] Write the documentation
 
 ## Technical discussion
