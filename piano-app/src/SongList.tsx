@@ -11,7 +11,7 @@ import { SongType, Spacings } from "./shared/types";
 
 const SongListStyle = styled.ul`
     padding: 0;
-    margin: 0 0 ${Spacings.L} 0;
+    margin: ${Spacings.L} 0 ${Spacings.L} 0;
     display: grid;
     column-gap: ${Spacings.L};
     grid-template-columns: repeat(4, 1fr);
@@ -69,7 +69,7 @@ const SongList = () => {
             {songsDisplay.length === 0 ? (
                 <p>You don't have any recorded songs yet.</p>
             ) : (
-                <SongListStyle>
+                <SongListStyle data-cy="song-list">
                     {songsDisplay.map((song: SongType) => (
                         <Song key={song._id} title={song.title} keyStrokes={song.keyStrokes} />
                     ))}

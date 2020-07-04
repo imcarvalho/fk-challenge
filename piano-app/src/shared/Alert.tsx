@@ -18,6 +18,8 @@ type Props = {
     text: string;
 };
 
-const Alert = (props: Props) => <AlertContainer>{props.text}</AlertContainer>;
+const Alert = (props: Props) => (
+    <AlertContainer data-cy="alert-message">{props.text}</AlertContainer>
+);
 
 export default Alert;

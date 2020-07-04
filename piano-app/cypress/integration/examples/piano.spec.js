@@ -8,35 +8,69 @@ context("Recording Piano", () => {
     it("starts recording and stopwatch runs", () => {
         cy.visitPianoPage();
 
-        cy.get("[data-cy=button-record]").should("be.visible");
-        cy.get("[data-cy=button-stop]").should("not.exist");
-        cy.get("[data-cy=stopwatch]").contains("00:00");
+        cy.getElement("button-record").should("be.visible");
+        cy.getElement("button-stop").should("not.exist");
+        cy.getElement("stopwatch")
+            .contains("00:00")
+            .should("exist");
 
-        cy.get("[data-cy=button-record]").click();
-        cy.get("[data-cy=button-stop]").should("be.visible");
+        cy.getElement("button-record").click();
+        cy.getElement("button-stop").should("be.visible");
 
         cy.wait(1000);
 
-        cy.get("[data-cy=stopwatch]")
+        cy.getElement("stopwatch")
             .contains("00:00")
             .should("not.exist");
-
-        cy.get("[data-cy=button-stop]").click();
     });
 
     it("should show the save dialog after hitting record and playing piano keys", () => {
         cy.visitPianoPage();
 
-        cy.get("[data-cy=button-record]").click();
+        cy.getElement("button-record").click();
+
+        cy.wait(500);
 
         cy.get(".ReactPiano__Key")
             .first()
             .click();
 
-        cy.get("[data-cy=button-stop]").click();
+        cy.wait(500);
+
+        cy.getElement("button-stop").click();
+
+        cy.getElement("save-form").should("exist");
     });
 
-    it("should have a song and play it", () => {
+    it("should save a song", () => {
+        cy.visitPianoPage();
+
+        cy.getElement("button-record").click();
+
+        cy.wait(500);
+
+        cy.get(".ReactPiano__Key")
+            .first()
+            .click();
+
+        cy.wait(500);
+
+        cy.getElement("button-stop").click();
+
+        cy.getElement("save-form").should("exist");
+
+        const songTitle = "So much talent for music";
+
+        cy.getElement("song-title-input").type(songTitle);
+
+        cy.getElement("submit-song").click();
+
+        cy.getElement("song-list").should("contain", songTitle);
+    });
+
+    it.only("should display a previously saved song, and be able to play it", () => {
+        const songLength = 2776;
+
         cy.addSong({
             title: "My Amazing Song",
             keyStrokes: [
@@ -47,10 +81,33 @@ context("Recording Piano", () => {
                 { midiNumber: 59, startTime: 1782, endTime: 1887 },
                 { midiNumber: 53, startTime: 2042, endTime: 2174 },
                 { midiNumber: 57, startTime: 2327, endTime: 2455 },
-                { midiNumber: 55, startTime: 2628, endTime: 2776 },
+                { midiNumber: 55, startTime: 2628, endTime: songLength },
             ],
         });
 
         cy.visitPianoPage();
+
+        cy.getElement("play-button")
+            .first()
+            .find("[data-icon='play']")
+            .should("exist");
+
+        cy.getElement("play-button")
+            .first()
+            .click();
+
+        cy.wait(songLength / 2);
+
+        cy.getElement("play-button")
+            .first()
+            .find("[data-icon='stop']")
+            .should("exist");
+
+        cy.wait(songLength);
+
+        cy.getElement("play-button")
+            .first()
+            .find("[data-icon='play']")
+            .should("exist");
     });
 });

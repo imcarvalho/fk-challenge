@@ -76,7 +76,7 @@ const SaveSong = (props: Props) => {
     return (
         <SaveContainer>
             <form onSubmit={handleSave}>
-                <SaveFormContainer>
+                <SaveFormContainer data-cy="save-form">
                     <InputContainer>
                         <Label htmlFor="songTitle">Song title</Label>
                         <Input
@@ -86,9 +86,10 @@ const SaveSong = (props: Props) => {
                             onChange={handleTitleUpdate}
                             name="song title"
                             id="songTitle"
+                            data-cy="song-title-input"
                         />
                     </InputContainer>
-                    <Button name="save" type="submit" disabled={loading}>
+                    <Button name="save" type="submit" disabled={loading} data-cy="submit-song">
                         Save
                     </Button>
                 </SaveFormContainer>

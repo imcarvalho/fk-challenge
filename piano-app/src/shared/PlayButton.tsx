@@ -22,7 +22,11 @@ type Props = {
 };
 
 const PlayButton = (props: Props) => (
-    <PlayButtonStyle onClick={props.onClick} name={props.isPlaying ? "Stop" : "Play"}>
+    <PlayButtonStyle
+        data-cy="play-button"
+        onClick={props.onClick}
+        name={props.isPlaying ? "Stop" : "Play"}
+    >
         {props.isPlaying ? <FontAwesomeIcon icon={faStop} /> : <FontAwesomeIcon icon={faPlay} />}
     </PlayButtonStyle>
 );
