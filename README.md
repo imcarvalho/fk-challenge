@@ -1,6 +1,8 @@
 # fk-challenge
 
-A challenge involving recording a piano song 🎹⏺
+A challenge to record a piano song 🎹⏺
+
+![App screenshot while recording](recording_screenshot.png)
 
 ## Running the app
 
