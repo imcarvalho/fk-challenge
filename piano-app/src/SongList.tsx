@@ -3,17 +3,11 @@ import styled from "styled-components";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import Song from "./Song";
+import SongListHeader from "./SongListHeader";
 import Alert from "./shared/Alert";
 import Loading from "./shared/Loading";
 import { RecordingContext } from "./shared/Contexts";
 import { SongType, Spacings } from "./shared/types";
-
-const SongListContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`;
 
 const SongListStyle = styled.ul`
     padding: 0;
@@ -54,27 +48,24 @@ const SongList = () => {
 
     if (loading) {
         return (
-            <SongListContainer>
-                <h2>My Songs</h2>
+            <SongListHeader>
                 <Loading />
-            </SongListContainer>
+            </SongListHeader>
         );
     }
 
     if (error) {
         return (
-            <SongListContainer>
-                <h2>My Songs</h2>
+            <SongListHeader>
                 <Alert text="An error ocurred while loading the songs." />
-            </SongListContainer>
+            </SongListHeader>
         );
     }
 
     const songsDisplay = data ? [...data.songs, ...newSongs] : newSongs;
 
     return (
-        <SongListContainer>
-            <h2>My Songs</h2>
+        <SongListHeader>
             {songsDisplay.length === 0 ? (
                 <p>You don't have any recorded songs yet.</p>
             ) : (
@@ -84,7 +75,7 @@ const SongList = () => {
                     ))}
                 </SongListStyle>
             )}
-        </SongListContainer>
+        </SongListHeader>
     );
 };
 
