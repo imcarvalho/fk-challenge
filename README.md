@@ -4,15 +4,17 @@ A challenge involving recording a piano song 🎹⏺
 
 ## Running the app
 
+You'll need to add an `.env` file at the root of the `piano-app`, with the Apollo Client URL like this:
+
+`REACT_APP_APOLLO_URL=<the actual URL>`
+
 ### With docker
 
-TODO
+`docker-compose up` on the root of the project.
 
 ### In the host machine
 
-Before hitting `npm i && npm start` on both `piano-app` and `graphql-server`, you'll also need to add an `.env` file at the root of the `piano-app`, with the Apollo Client URL like this:
-
-`REACT_APP_APOLLO_URL=<the actual URL>`
+`npm i && npm start` on both `piano-app` and `graphql-server`.
 
 ## TODO list
 
@@ -34,6 +36,8 @@ Before hitting `npm i && npm start` on both `piano-app` and `graphql-server`, yo
 I did not refactor the whole project, as I believe it was out of the scope of this challenge; however, if this was a real life situation, I would've converted everything into Typescript.
 I also did not update the package versions of the pre-included project.
 
+Functionality wise: you can interact with the Piano only if you've hit Record. After hitting Stop Recording, you'll be asked to input a song name, and then the Song will be shown on a list below the Piano. You can hit the Play button to listen to it.
+
 I tried to keep the changes to a minimal to the original components, but I had to mainly update `SoundfontProvider` in order to save all the notes being played and their timings inside the methods `playNote` and `stopNote`. I also updated the GraphQL schema, so a Song would be composed of a `miniNumber`, a `startTime` (when that key was pressed), and an `endTime` (when the key was released).
 The `Piano` component was also updated, in order to provide the context for the application and make use of the functions that the `SoundfontProvider` was providing.
 
@@ -51,7 +55,7 @@ The `SongList` is a sibling of the `Recorder` component, and displays a list of 
 
 ## Further improvements
 
-Besides the unticked items on the above TODO list, if I had more time I would also consider the following:
+If I had more time I would also consider the following:
 
-- Adding a delete function
+- Add a song removal functionality
 - Full conversion to Typescript
