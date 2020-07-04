@@ -50,9 +50,11 @@ I did not refactor the whole project, as I believe it was out of the scope of th
 
 I also did not update the package versions of the pre-included project.
 
-What I did add was a docker configuration, which is optional to run. This way, even if you don't have MongoDB installed (which I didn't), you can raise docker containers with the project and MongoDB + Mongo Express containers.
+What I did add was a docker compose configuration, which is an alternative way to run the project. This way, all dependencies are loaded on the containers with a single command, which is more practical than installing and starting the services manually.
 
 On the UI and GraphQL server docker containers configuration, I used, on `command`, a shell script: this is due to `command` only allowing a single command, and I wanted to ensure that both install and run scripts were run at startup.
+
+I also used styled-components for all the CSS I needed, instead of plain CSS like the original codebase used. I'm a fan of styled-components (and CSS-in-JS, generally speaking) because it scopes the CSS to that single component, avoiding common issues with "spilling" CSS.
 
 ### Updates to the existing codebase
 
