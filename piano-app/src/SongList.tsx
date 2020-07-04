@@ -52,13 +52,29 @@ const SongList = () => {
         }
     `);
 
+    if (loading) {
+        return (
+            <SongListContainer>
+                <h2>My Songs</h2>
+                <Loading />
+            </SongListContainer>
+        );
+    }
+
+    if (error) {
+        return (
+            <SongListContainer>
+                <h2>My Songs</h2>
+                <Alert text="An error ocurred while loading the songs." />
+            </SongListContainer>
+        );
+    }
+
     const songsDisplay = data ? [...data.songs, ...newSongs] : newSongs;
 
     return (
         <SongListContainer>
             <h2>My Songs</h2>
-            {loading && <Loading />}
-            {error && <Alert text="An error ocurred while loading the songs." />}
             {songsDisplay.length === 0 ? (
                 <p>You don't have any recorded songs yet.</p>
             ) : (
