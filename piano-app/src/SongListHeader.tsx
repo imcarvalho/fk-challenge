@@ -7,6 +7,9 @@ const SongListContainer = styled.div`
     justify-content: center;
     align-items: center;
 `;
+const SongsHeader = styled.h2`
+    margin-bottom: 0;
+`;
 
 type Props = {
     children: React.ReactNode;
@@ -14,7 +17,7 @@ type Props = {
 
 const SongListHeader = (props: Props) => (
     <SongListContainer>
-        <h2>My Songs</h2>
+        <SongsHeader>My Songs</SongsHeader>
         {props.children}
     </SongListContainer>
 );
