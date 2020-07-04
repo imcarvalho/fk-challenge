@@ -5,6 +5,10 @@ context("Recording Piano", () => {
         cy.removeSongs();
     });
 
+    after(() => {
+        cy.removeSongs();
+    });
+
     it("starts recording and stopwatch runs", () => {
         cy.visitPianoPage();
 
