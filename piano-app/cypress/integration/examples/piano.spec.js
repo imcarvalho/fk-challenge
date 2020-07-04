@@ -68,8 +68,8 @@ context("Recording Piano", () => {
         cy.getElement("song-list").should("contain", songTitle);
     });
 
-    it.only("should display a previously saved song, and be able to play it", () => {
-        const songLength = 2776;
+    it("should display a previously saved song, and be able to play it", () => {
+        const songLength = 1887;
 
         cy.addSong({
             title: "My Amazing Song",
@@ -78,10 +78,7 @@ context("Recording Piano", () => {
                 { midiNumber: 59, startTime: 1175, endTime: 1299 },
                 { midiNumber: 52, startTime: 1476, endTime: 1594 },
                 { midiNumber: 57, startTime: 1771, endTime: 1790 },
-                { midiNumber: 59, startTime: 1782, endTime: 1887 },
-                { midiNumber: 53, startTime: 2042, endTime: 2174 },
-                { midiNumber: 57, startTime: 2327, endTime: 2455 },
-                { midiNumber: 55, startTime: 2628, endTime: songLength },
+                { midiNumber: 59, startTime: 1782, endTime: songLength },
             ],
         });
 
