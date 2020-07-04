@@ -1,8 +1,11 @@
 /// <reference types="cypress" />
 
+const DEFAULT_WAITING_NOTE = 600;
+
 context("Recording Piano", () => {
     beforeEach(() => {
         cy.removeSongs();
+        cy.server();
     });
 
     after(() => {
@@ -33,15 +36,17 @@ context("Recording Piano", () => {
 
         cy.getElement("button-record").click();
 
-        cy.wait(500);
+        cy.wait(DEFAULT_WAITING_NOTE);
 
         cy.get(".ReactPiano__Key")
             .first()
             .click();
 
-        cy.wait(500);
+        cy.wait(DEFAULT_WAITING_NOTE);
 
         cy.getElement("button-stop").click();
+
+        cy.wait(DEFAULT_WAITING_NOTE);
 
         cy.getElement("save-form").should("exist");
     });
@@ -51,15 +56,17 @@ context("Recording Piano", () => {
 
         cy.getElement("button-record").click();
 
-        cy.wait(500);
+        cy.wait(DEFAULT_WAITING_NOTE);
 
         cy.get(".ReactPiano__Key")
             .first()
             .click();
 
-        cy.wait(500);
+        cy.wait(DEFAULT_WAITING_NOTE);
 
         cy.getElement("button-stop").click();
+
+        cy.wait(DEFAULT_WAITING_NOTE);
 
         cy.getElement("save-form").should("exist");
 
@@ -109,6 +116,62 @@ context("Recording Piano", () => {
         cy.getElement("play-button")
             .first()
             .find("[data-icon='play']")
+            .should("exist");
+    });
+
+    it("should show an error message when there's a failure in getting the list of songs", () => {
+        // a failing test
+        cy.route({
+            method: "POST",
+            url: "http://localhost:4000/",
+            status: 400,
+            response: {},
+        }).as("failGraphqlRequest");
+
+        cy.visitPianoPage();
+
+        cy.wait("@failGraphqlRequest");
+
+        cy.getElement("song-list-container")
+            .find("[data-cy=alert-message]")
+            .should("exist");
+    });
+
+    it("should show an error message when it fails to save a song", () => {
+        // a failing test
+        cy.route({
+            method: "POST",
+            url: "http://localhost:4000/",
+            status: 400,
+            response: {},
+        }).as("failGraphqlRequest");
+
+        cy.visitPianoPage();
+
+        cy.wait("@failGraphqlRequest");
+
+        cy.getElement("button-record").click();
+
+        cy.wait(DEFAULT_WAITING_NOTE);
+
+        cy.get(".ReactPiano__Key")
+            .first()
+            .click();
+
+        cy.wait(DEFAULT_WAITING_NOTE);
+
+        cy.getElement("button-stop").click();
+
+        cy.wait(DEFAULT_WAITING_NOTE);
+
+        const songTitle = "So much talent for music";
+
+        cy.getElement("song-title-input").type("A song doomed to be forgotten");
+
+        cy.getElement("submit-song").click();
+
+        cy.getElement("save-container")
+            .find("[data-cy=alert-message]")
             .should("exist");
     });
 });

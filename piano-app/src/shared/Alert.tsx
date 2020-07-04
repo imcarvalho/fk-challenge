@@ -4,6 +4,7 @@ import { Colors, Spacings } from "./types";
 
 const AlertContainer = styled.div`
     padding: ${Spacings.S};
+    margin-top: ${Spacings.L};
     background-color: ${Colors.AlertBackground};
     color: ${Colors.AlertForeground};
     border: 1px solid ${Colors.AlertForeground};

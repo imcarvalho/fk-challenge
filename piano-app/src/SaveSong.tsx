@@ -15,7 +15,6 @@ const SaveContainer = styled.div`
 const SaveFormContainer = styled.div`
     display: flex;
     align-items: flex-end;
-    padding-bottom: 15px;
 `;
 
 const InputContainer = styled.div`
@@ -74,7 +73,7 @@ const SaveSong = (props: Props) => {
     };
 
     return (
-        <SaveContainer>
+        <SaveContainer data-cy="save-container">
             <form onSubmit={handleSave}>
                 <SaveFormContainer data-cy="save-form">
                     <InputContainer>

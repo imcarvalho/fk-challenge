@@ -16,7 +16,7 @@ type Props = {
 };
 
 const SongListHeader = (props: Props) => (
-    <SongListContainer>
+    <SongListContainer data-cy="song-list-container">
         <SongsHeader>My Songs</SongsHeader>
         {props.children}
     </SongListContainer>
