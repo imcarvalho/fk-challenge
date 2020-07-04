@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 import { Piano as ReactPiano, KeyboardShortcuts, MidiNumbers } from "react-piano";
@@ -25,6 +26,11 @@ const client = new ApolloClient({
     uri: process.env.REACT_APP_APOLLO_URL,
 });
 
+const PianoWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+`;
+
 function Piano() {
     const [notes, setNotes] = useState([]);
     const [isRecording, setIsRecording] = useState(false);
@@ -50,15 +56,17 @@ function Piano() {
                 hostname={soundfontHostname}
                 render={({ isLoading, playNote, stopNote }) => {
                     return (
-                        <div>
-                            <ReactPiano
-                                disabled={isLoading || !isRecording}
-                                noteRange={noteRange}
-                                playNote={playNote}
-                                stopNote={stopNote}
-                                width={1000}
-                                keyboardShortcuts={keyboardShortcuts}
-                            />
+                        <>
+                            <PianoWrapper>
+                                <ReactPiano
+                                    disabled={isLoading || !isRecording}
+                                    noteRange={noteRange}
+                                    playNote={playNote}
+                                    stopNote={stopNote}
+                                    width={1000}
+                                    keyboardShortcuts={keyboardShortcuts}
+                                />
+                            </PianoWrapper>
                             <ApolloProvider client={client}>
                                 <Recorder
                                     isLoading={isLoading}
@@ -75,7 +83,7 @@ function Piano() {
                                     <SongList />
                                 </PlayContext.Provider>
                             </ApolloProvider>
-                        </div>
+                        </>
                     );
                 }}
             />
