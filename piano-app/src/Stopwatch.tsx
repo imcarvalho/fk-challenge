@@ -18,6 +18,7 @@ const Stopwatch = () => {
         isRecording && startTimer();
 
         return () => stopTimer();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isRecording]);
 
     const startTimer = () => {

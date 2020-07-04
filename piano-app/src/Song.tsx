@@ -35,6 +35,7 @@ const Song = (props: Props) => {
         isPlaying && play();
 
         return () => clearInterval(interval);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isPlaying]);
 
     const play = () => {

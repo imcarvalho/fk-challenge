@@ -61,6 +61,7 @@ const SaveSong = (props: Props) => {
             setNewSongs([...newSongs, data.addSong]);
             props.onSave();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [data]);
 
     const handleTitleUpdate = (e: React.ChangeEvent<HTMLInputElement>) =>
