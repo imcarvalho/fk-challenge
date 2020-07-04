@@ -14,6 +14,10 @@ const PlayButtonStyle = styled.button`
     height: 24px;
     font-size: 0.8em;
     cursor: pointer;
+
+    > svg {
+        margin-top: 1px;
+    }
 `;
 
 type Props = {
