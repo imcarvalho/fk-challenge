@@ -6,10 +6,6 @@ A challenge to record a piano song 🎹⏺
 
 ## Running the app
 
-You'll need to add an `.env` file at the root of the `piano-app`, with the Apollo Client URL like this:
-
-`REACT_APP_APOLLO_URL=<the actual URL>`
-
 ### With docker
 
 `docker-compose up` on the root of the project.
