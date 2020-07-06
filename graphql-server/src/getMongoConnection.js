@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 
-const mongoUrl = "mongodb://localhost:27017";
+const mongoUrl = process.env.MONGODB_URL ? process.env.MONGODB_URL : "mongodb://localhost:27017";
 const dbName = "graphqldb";
 
 let mongodb = null;

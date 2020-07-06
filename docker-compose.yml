@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  api:
+    image: node:12
+    command: sh -c "npm install && npm run start"
+    working_dir: /app
+    volumes:
+      - ./graphql-server:/app
+    ports:
+      - 4000:4000
+    environment:
+      MONGODB_URL: 'mongodb://root:root@mongo:27017'
+
+  ui:
+    image: node:12
+    command: sh -c "npm install && npm run start"
+    working_dir: /app
+    volumes:
+      - ./piano-app:/app
+    ports:
+      - 3000:3000
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root

@@ -1,8 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Soundfont from "soundfont-player";
+import { RecordingContext } from "./shared/Contexts";
 
 class SoundfontProvider extends React.Component {
+    static contextType = RecordingContext;
+
     static propTypes = {
         instrumentName: PropTypes.string.isRequired,
         hostname: PropTypes.string.isRequired,
@@ -57,6 +60,17 @@ class SoundfontProvider extends React.Component {
     playNote = midiNumber => {
         this.props.audioContext.resume().then(() => {
             const audioNode = this.state.instrument.play(midiNumber);
+
+            if (this.context.isRecording) {
+                this.context.setNotes([
+                    ...this.context.notes,
+                    {
+                        midiNumber,
+                        startTime: Date.now() - this.context.startingTime,
+                    },
+                ]);
+            }
+
             this.setState({
                 activeAudioNodes: Object.assign({}, this.state.activeAudioNodes, {
                     [midiNumber]: audioNode,
@@ -72,6 +86,23 @@ class SoundfontProvider extends React.Component {
             }
             const audioNode = this.state.activeAudioNodes[midiNumber];
             audioNode.stop();
+
+            if (this.context.isRecording) {
+                const updatedNotes = [...this.context.notes];
+
+                for (let i = updatedNotes.length - 1; i >= 0; i--) {
+                    if (updatedNotes[i].midiNumber === midiNumber) {
+                        updatedNotes[i] = {
+                            ...updatedNotes[i],
+                            endTime: Date.now() - this.context.startingTime,
+                        };
+                        break;
+                    }
+                }
+
+                this.context.setNotes(updatedNotes);
+            }
+
             this.setState({
                 activeAudioNodes: Object.assign({}, this.state.activeAudioNodes, {
                     [midiNumber]: null,
@@ -105,4 +136,4 @@ class SoundfontProvider extends React.Component {
     }
 }
 
-export default SoundfontProvider;
+export default React.memo(SoundfontProvider);
